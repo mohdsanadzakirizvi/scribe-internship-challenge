@@ -15,7 +15,7 @@ def connect():
 	Initiate a connection to Slack API
 	"""
 	# API_KEY = get_slack_token()
-	slack_api_client = SlackClient('xoxb-276075241505-5zATJXb46oqwxB8ge8Qyrdbt')
+	slack_api_client = SlackClient('xoxb-276075241505-r69fespKULLBFBDasQgrb24N')
 	return slack_api_client
 
 def get_users():
