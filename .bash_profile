@@ -1,2 +1,2 @@
-export SLACK_TOKEN="xoxb-276075241505-urvbXcleJTIZfijcCsYJljlf"
+export SLACK_TOKEN="xoxb-276075241505-MgOx1BoBrHR401dACJTiEkQE"
 

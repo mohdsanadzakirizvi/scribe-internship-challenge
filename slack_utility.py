@@ -32,7 +32,7 @@ def get_bot_id(botname):
 	Get BOT_ID using botname and set in the env variable BOT_ID
 	"""
 	if environ.get('SLACK_BOT_ID'):
-		environ.get('SLACK_BOT_ID')
+		return environ.get('SLACK_BOT_ID')
 	else:
 		user_list = get_users()
 		if user_list:
