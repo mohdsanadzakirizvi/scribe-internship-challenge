@@ -14,9 +14,9 @@ The following is the project structure:
  ## Dependencies
  The project depends upon the following packages:
  
-  - (slackclient)[https://github.com/slackapi/python-slackclient]
-  - (python-crontab)[https://pypi.python.org/pypi/python-crontab]
-  - (pytz)[https://pypi.python.org/pypi/pytz]
+  - [slackclient](https://github.com/slackapi/python-slackclient)
+  - [python-crontab](https://pypi.python.org/pypi/python-crontab)
+  - [pytz](https://pypi.python.org/pypi/pytz)
   
  ## License
  
