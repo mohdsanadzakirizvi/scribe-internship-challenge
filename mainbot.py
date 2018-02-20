@@ -14,26 +14,27 @@ def parse_slack_response(rtm_output):
 	AT_BOT = '<@'+slack_utility.get_bot_id()+'>'
 	if rtm_output and len(rtm_output):
 		for output in rtm_output:
-			if output and 'text' in output and AT_BOT in output['text']:
-				return output['text'].split(AT_BOT)[1].strip(), output['channel']
+			if output and 'text' in output:
+				if AT_BOT.lower() in output['text'].lower():
+					return output['text'].split(AT_BOT)[1].strip(), output['channel']
 	return None, None 
 
-def handle_command(command, channel):
+def handle_command(slack_api, command, channel):
 	"""
 	Recieves commands directed for the bot, if they are valid perform action 
 	else resends clarification
 	"""
 	EXAMPLE_COMMAND = 'do'
 	if command.lower().startswith(EXAMPLE_COMMAND):
-		slack_utility.send_message(msg='Yes, code me further to do that!')
+		slack_api.rtm_send_message(channel, 'Yes, code me further to do that!')
 	elif command.lower().startswith('set reminder'):
-		slack_utility.send_message(msg='Hey, what\'s your timezone?')
+		slack_api.rtm_send_message(channel, 'Hey, what\'s your timezone?')
 	elif command.startswith('my timezone is'):
 		tzone = command.split('my timezone is')[1].strip()
-		slack_utility.create_cron(tzone)
+		slack_api.rtm_create_cron(tzone)
 	else:
 		print 'Invalid Command: Not Understood'
-		slack_utility.send_message(msg='Invalid Command: Not Understood')
+		slack_api.rtm_send_message(channel, 'Invalid Command: Not Understood')
 	
 def main():
 	"""
@@ -46,10 +47,10 @@ def main():
 		while True:
 			command, channel = parse_slack_response(slack_api.rtm_read())
 			if command and channel:
-				handle_command(command, channel)
+				handle_command(slack_api, command, channel)
 			time.sleep(READ_WEBSOCKET_DELAY)
 	else:
-		print('Connection failed. Invalid Slack token or bot ID?')
+		print 'Connection failed. Invalid Slack token or bot ID?' 
 
 if __name__ == '__main__':
 	main()
